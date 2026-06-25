@@ -55,7 +55,10 @@ app.add_exception_handler(RateLimitExceeded, custom_rate_limit_handler)
 # Setup CORS for local frontend testing
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, restrict this
+    allow_origins=[
+        "http://localhost:5173",
+        "https://digital-risk-three.vercel.app"
+    ], # Production frontend URL added
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
