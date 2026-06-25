@@ -12,6 +12,11 @@ This repository contains the full-stack solution for the Internship Selection Ta
 - **Abuse Prevention**: Rate limiting is implemented using `slowapi`. Furthermore, the ranking system only awards the flat transaction bonus points if the transaction amount is >= $1.00, preventing users from spamming micro-transactions ($0.01) to unfairly inflate their score.
 - **Ranking Logic**: `Score = Total Amount + (Valid Transactions * 10)`.
 
+### Database Schema & Data Flow
+- **Users Table**: Stores `id`, `username`, `total_amount`, `transaction_count`, and `score`. Used to track the overall progress and rank of each user.
+- **Transactions Table**: Stores `id`, `user_id`, `amount`, and a unique `idempotency_key`. The unique constraint on `idempotency_key` guarantees that no duplicate transactions are ever processed, even under high concurrency.
+- **Data Flow**: When a transaction is submitted, the system checks for idempotency, locks the user's row (`SELECT ... FOR UPDATE`), increments the user's `total_amount` and `transaction_count` (if valid), recalculates the `score`, and then commits the database transaction to ensure atomicity and consistency.
+
 ### Frontend (React + Vite)
 - **Architecture**: A clean, multi-page layout managed by `react-router-dom` separating concerns into Dashboard, Transactions, and Activity views.
 - **UI/UX & Premium Aesthetics**: A highly polished, custom "Glassmorphism" UI enhanced with Framer Motion. It features a liquid navigation bar, smooth page transitions, staggered cascading data lists, dynamic animated background orbs, and deep hover interactions to provide a truly premium experience.
