@@ -137,16 +137,17 @@ export const Leaderboard = ({ refreshTrigger }: Props) => {
 
       <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
         <AnimatePresence>
-          {ranking.map((user) => {
+          {ranking.map((user, index) => {
             const risk = riskMap[user.user_id];
             const riskCfg = risk ? riskIcons[risk.risk_level] || riskIcons['Low'] : null;
 
             return (
               <motion.div
                 key={user.user_id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 layout
                 style={{
                   display: 'flex',

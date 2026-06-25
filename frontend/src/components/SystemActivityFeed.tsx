@@ -80,7 +80,7 @@ export const SystemActivityFeed = ({ refreshTrigger }: { refreshTrigger?: number
                 initial={{ opacity: 0, x: -20, height: 0 }}
                 animate={{ opacity: 1, x: 0, height: 'auto' }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
                 style={{ 
                   display: 'flex', 
                   gap: '12px', 

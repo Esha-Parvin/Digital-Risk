@@ -13,7 +13,8 @@ This repository contains the full-stack solution for the Internship Selection Ta
 - **Ranking Logic**: `Score = Total Amount + (Valid Transactions * 10)`.
 
 ### Frontend (React + Vite)
-- **UI/UX**: A highly polished, custom "Glassmorphism" UI using pure CSS and Framer Motion. It goes beyond a simple MVP to provide a "Gamified" experience that looks professional and stands out.
+- **Architecture**: A clean, multi-page layout managed by `react-router-dom` separating concerns into Dashboard, Transactions, and Activity views.
+- **UI/UX & Premium Aesthetics**: A highly polished, custom "Glassmorphism" UI enhanced with Framer Motion. It features a liquid navigation bar, smooth page transitions, staggered cascading data lists, dynamic animated background orbs, and deep hover interactions to provide a truly premium experience.
 - **Idempotency Integration**: The frontend automatically generates and passes an `idempotency_key` via the `uuid` package for every transaction.
 
 ---
@@ -112,10 +113,4 @@ Retrieves the top users ordered by score.
 
 ---
 
-## 🎥 Video Demonstration Requirements
 
-For your screen-recorded video, follow this script outline:
-1. **What you built**: "I built a gamified transaction hub using FastAPI and React, designed to look professional while ensuring strict data consistency."
-2. **APIs**: Briefly show Swagger UI (`/docs`) and make a POST request, then show the live update on the React frontend.
-3. **Concurrency & Fairness**: "To handle concurrency, I used PostgreSQL row-level locks (`SELECT FOR UPDATE`). For fairness, I implemented an idempotency key to prevent double charges, rate limiting via `slowapi`, and a minimum threshold of $1 for transaction point bonuses to prevent spamming."
-4. **Trade-offs**: "Since I focused heavily on data integrity, using a SQL DB requires more setup than NoSQL. Also, row-level locking ensures consistency but might slightly reduce throughput under extreme load compared to an eventually-consistent queue-based architecture."
