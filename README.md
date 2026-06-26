@@ -1,4 +1,4 @@
-# Gamified Transaction Hub - Internship Selection Task
+# Gamified Transaction Hub
 
 This repository contains the full-stack solution for the Internship Selection Task, built with a focus on production readiness, strong backend fundamentals, and a unique, premium gamified frontend.
 
